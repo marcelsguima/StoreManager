@@ -5,14 +5,27 @@ const findAll = async () => {
   const [products] = await connection.execute(
     'SELECT * FROM products',
   );
-  console.log(products);
   return camelize(products);
 };
 
 const productById = async (id) => {
   try {
-    const [sql] = await connection.execute('SELECT * FROM products WHERE id = (?)',
-      [id]);
+    const [[sql]] = await connection.execute(
+      'SELECT * FROM products WHERE id = (?)',
+      [id],
+);
+    return sql;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const regProduct = async (newProduct, id) => {
+  try {
+    const [[sql]] = await connection.execute(
+      'INSERT INTO products (name, id) VALUES (?, ?)',
+      [newProduct], [id], 
+);
     return sql;
   } catch (error) {
     console.log(error);
@@ -22,4 +35,5 @@ const productById = async (id) => {
 module.exports = {
   findAll,
   productById,
+  regProduct,
 };

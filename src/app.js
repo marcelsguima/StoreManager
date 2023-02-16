@@ -2,10 +2,23 @@ const express = require('express');
 const productModel = require('./models/product.model');
 
 const app = express();
+app.use(express.json());
 
 app.get('/products', async (req, res) => {
   const allProducts = await productModel.findAll();
   res.status(200).json(allProducts);
+});
+
+app.post('/products', async (req, res) => {
+  // const { name } = req.body;
+  console.log(req.body);
+  const allProducts = await productModel.findAll();
+  // console.log(req);
+  const newProduct = { id: allProducts.length + 1, ...req.body };
+  const { id } = newProduct;
+  await productModel.regProduct((newProduct));
+  const product = { id, name: req.body.name };
+  res.status(201).json(product);
 });
 
 app.get('/products/:id', async (req, res) => {
