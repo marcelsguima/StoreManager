@@ -1,11 +1,10 @@
-const camelize = require('camelize');
 const connection = require('./db/connection');
 
 const findAll = async () => {
   const [products] = await connection.execute(
     'SELECT * FROM products',
   );
-  return camelize(products);
+  return products;
 };
 
 const productById = async (id) => {
@@ -20,13 +19,15 @@ const productById = async (id) => {
   }
 };
 
-const regProduct = async (newProduct, id) => {
+const regProduct = async (newProduct) => {
+  console.log(newProduct);
   try {
-    const [[sql]] = await connection.execute(
-      'INSERT INTO products (name, id) VALUES (?, ?)',
-      [newProduct], [id], 
-);
-    return sql;
+    const [sql] = await connection.execute(
+      'INSERT INTO StoreManager.products (name) VALUES (?)',
+      [newProduct],  
+    );
+    // console.log(sql.insertId);
+    return { id: sql.insertId, name: newProduct };
   } catch (error) {
     console.log(error);
   }
