@@ -1,4 +1,5 @@
 const productService = require('../services/product.service');
+const { mapError } = require('../utils/errorMap');
 
 const findAll = async (_req, res) => {
   const { type, message } = await productService.findAll();
@@ -19,8 +20,10 @@ const productById = async (req, res) => {
 
 const regProduct = async (req, res) => {
   const { name } = req.body;
-  const message = await productService.regProduct(name);
-
+  const { type, message } = await productService.regProduct(name);
+  
+  if (type) return res.status(mapError(type)).json({ message });
+  
   return res.status(201).json(message);
 };
 

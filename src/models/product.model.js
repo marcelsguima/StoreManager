@@ -20,17 +20,12 @@ const productById = async (id) => {
 };
 
 const regProduct = async (newProduct) => {
-  console.log(newProduct);
-  try {
     const [sql] = await connection.execute(
       'INSERT INTO StoreManager.products (name) VALUES (?)',
       [newProduct],  
-    );
-    // console.log(sql.insertId);
-    return { id: sql.insertId, name: newProduct };
-  } catch (error) {
-    console.log(error);
-  }
+    
+  );
+  return { id: sql.insertId, name: newProduct };
 };
 
 module.exports = {
