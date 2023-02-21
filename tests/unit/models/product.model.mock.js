@@ -13,4 +13,4 @@ const allProducts = [
   }
 ]
 
-module.exports = allProducts;
+module.exports = {allProducts};

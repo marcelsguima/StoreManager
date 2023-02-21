@@ -9,25 +9,23 @@ describe('Products unit Test', () => {
   afterEach(() => {
     sinon.restore();
   });
-  
+
   it('Should return a list of products', async () => {
     const findAllStub = sinon.stub(connection, 'execute').resolves([allProducts]);
     
     const products = await productModel.findAll();
-    
-    
+        
     expect(products).to.be.deep.equal(allProducts);
 
     findAllStub.restore();
   })
-  // it('Should return the required product if registered on the database', async () => {
-  //   const productById = sinon.stub(connection, 'execute').resolves([[allProducts]]);
+
+  it('Should return the required product if registered on the database', async () => {
+   
+    sinon.stub(connection, 'execute').resolves([[allProducts[0]]]);
     
-
-  //   const product = await productModel.productById(3);
-
-  //   expect(product).to.be.deep.equal(allProducts[2]);
-
-  //   productById.restore();
-  // })
+    const result = await productModel.productById(1);
+    
+    expect(result).to.be.deep.equal(allProducts[0]);
+  })
 });
