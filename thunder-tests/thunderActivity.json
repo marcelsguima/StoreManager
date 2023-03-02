@@ -84,11 +84,11 @@
     "colId": "history",
     "containerId": "",
     "name": "all sales",
-    "url": "localhost:3000/sales/",
+    "url": "localhost:3000/sales/a",
     "method": "GET",
     "sortNum": 0,
     "created": "2023-03-01T19:54:17.285Z",
-    "modified": "2023-03-01T19:54:17.285Z",
+    "modified": "2023-03-02T11:07:25.798Z",
     "headers": [],
     "params": [],
     "tests": []
