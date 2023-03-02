@@ -99,17 +99,12 @@
     "containerId": "",
     "name": "edit product",
     "url": "localhost:3000/products/1",
-    "method": "PUT",
+    "method": "DELETE",
     "sortNum": 0,
     "created": "2023-03-01T21:36:26.172Z",
-    "modified": "2023-03-02T06:40:22.357Z",
+    "modified": "2023-03-02T06:54:22.326Z",
     "headers": [],
     "params": [],
-    "body": {
-      "type": "json",
-      "raw": "{\n  \n}",
-      "form": []
-    },
     "tests": []
   }
 ]

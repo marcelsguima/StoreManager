@@ -40,9 +40,22 @@ const editProduct = async (name, id) => {
   }
 };
 
+const deleteProduct = async (id) => {
+  try {
+    const [sql] = await connection.execute(
+      'DELETE FROM StoreManager.products WHERE id = ?',
+      [id],
+);
+    return sql;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports = {
   findAll,
   productById,
   regProduct,
   editProduct,
+  deleteProduct,
 };
