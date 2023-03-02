@@ -22,7 +22,7 @@ const validateName = (productName) => {
 
 const validateSaleName = (newSale) => {
   const { error } = saleProductID.validate(newSale);
-  console.log(newSale, 'inputvalues');
+  // console.log(newSale, 'inputvalues');
   
   if (error) {
     if (error.message.includes('required')) {

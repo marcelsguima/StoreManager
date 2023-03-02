@@ -3,8 +3,9 @@ const salesModel = require('../models/sales.model');
 const { validateSaleName } = require('./validations/inputValues');
 
 const checkProductID = async (newSale) => {
+  console.log(newSale);
   const maped = newSale.map((product) =>
-    salesModel.findProductId(product.productId));
+    salesModel.saleByID(product.productId));
   
   const productID = await Promise.all(maped);
 

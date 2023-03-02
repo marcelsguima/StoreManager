@@ -19,10 +19,10 @@ const saleByID = async (req, res) => {
 };
 
 const registerSale = async (req, res) => {
-  const { saleID, productID, productQuantity } = req.body;
+  // const { productID, productQuantity } = req.body;
 //  console.log(req.body);
 
-  const { type, message } = await salesService.registerSale(saleID, { productID, productQuantity });
+  const { type, message } = await salesService.registerSale(req.body);
   
   if (type) return res.status(mapError(type)).json({ message });
   return res.status(201).json(message);

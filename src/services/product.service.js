@@ -25,8 +25,24 @@ const regProduct = async (name) => {
   return { type: null, message: newProduct };
 };
 
+const editProduct = async (name, id) => {
+  const error = schema.validateName({ name });
+  console.log(error);
+ 
+  if (error.type) return error;
+
+  const productToEdit = await productModel.productById(id);
+
+  if (!productToEdit) return { type: 'PRODUCT_NOT_FOUND', message: 'Product not found' };
+  
+  await productModel.editProduct(name, id);
+  const editedProduct = await productModel.productById(id);
+  return { type: null, message: editedProduct };
+};
+
 module.exports = {
   findAll,
   productById,
   regProduct,
+  editProduct,
 };
